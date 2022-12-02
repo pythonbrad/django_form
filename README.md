@@ -1,4 +1,4 @@
-# EasyForm
+# DjangoForm
 An opensource alternative to Google Form.
 
 ## How to deploy
