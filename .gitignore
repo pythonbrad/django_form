@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+[0-9]*.py
+db.sqlite3
+static/assets
+media
+.env
+.form_venv
