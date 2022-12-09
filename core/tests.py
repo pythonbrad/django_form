@@ -13,7 +13,8 @@ class FormModelTest(TestCase):
             author=user,
             defaults={
                 'name': 'Python Survey 2022',
-                'description': 'A survey to get feedback about the usage of python as main language.',
+                'description': 'A survey to get feedback about'
+                ' the usage of python as main language.',
             }
         )[0]
 
