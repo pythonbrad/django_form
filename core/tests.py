@@ -6,9 +6,9 @@ from .forms import RecordForm
 # Create your tests here.
 class FormModelTest(TestCase):
     def test_create_form(self):
-        user = User.objects.create(
+        user = User.objects.get_or_create(
             username='brad'
-        )
+        )[0]
         return Form.objects.get_or_create(
             author=user,
             defaults={
@@ -54,7 +54,10 @@ class RecordModelTest(EntryModelTest):
         for entry in Entry.objects.filter():
             Record.objects.create(
                 entry=entry,
-                value=data[entry.type]
+                value=data[entry.type],
+                author=User.objects.get_or_create(
+                    username='luck'
+                )[0]
             )
 
 
@@ -80,4 +83,7 @@ class RecordFormTest(EntryModelTest):
                 'value': data[entry.type]
             })
             self.assertTrue(form.is_valid())
+            form.instance.author = User.objects.get_or_create(
+                username='joseph'
+            )[0]
             form.save()
