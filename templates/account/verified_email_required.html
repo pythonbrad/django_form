@@ -1,10 +1,10 @@
-{% extends "account/base.html" %}
+{% extends "baseform.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
-{% block content %}
+{% block form %}
 <h1 class="title">{% trans "Verify Your E-mail Address" %}</h1>
 
 {% url 'account_email' as email_url %}

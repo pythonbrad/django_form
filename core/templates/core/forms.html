@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    {% for form in forms %}
+    {% if forloop.first or forloop.counter0|divisibleby:3 %}
+    <div class="columns">
+    {% endif %}
+      <div class="column has-text-centered is-one-third">
+        <div class="hero">
+          <div class="hero-head">
+            <figure class="image">
+              <img src="{% static 'images/logo.png' %}">
+            </figure>
+          </div>
+          <div class="hero-body">
+            <p class="title">{{ form.name }}</p>
+            <p class="subtitle">{{ form.description }}</p>
+          </div>
+          <div class="hero-foot">
+            <p class="subtitle">{{ form.get_response|length }} responses</p>
+          </div>
+        </div>
+      </div>
+    {% if forloop.counter|divisibleby:3 %}
+    </div>
+    {% endif %}
+    {% empty %}
+    <div class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <a class="button is-primary">Create your first form</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+{% endblock %}

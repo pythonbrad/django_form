@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from .forms import *
-
 
 # Create your views here.
 def index(request):
-    return render('core/index.html')
+    return render(request, 'core/index.html')
+
+def forms(request):
+    return render(request, 'core/forms.html', {
+        'title': 'My forms'
+    })
