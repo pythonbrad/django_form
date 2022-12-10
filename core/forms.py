@@ -5,7 +5,7 @@ from .models import Form as MForm, Entry, Record
 class Form(forms.ModelForm):
     class Meta:
         model = MForm
-        exclude = ['author', 'code']
+        fields = ['name', 'description']
 
 
 class EntryForm(forms.ModelForm):
