@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+  {% include 'core/form_banner.html' %}
+  <h1 class="title">
+    {{ form.name }}'s {% if raw %}Records{% else %}Entries{% endif %}
+  </h1>
+  <p class="subtitle">
+    {% url 'new_record' form.code as form_url %}
+    Share Link: <a href="{{ form_url }}" target="_blank">{{ form_url }}</a>
+  </p>
+</div>
+<div class="content">
+  <div class="tabs is-fullwidth is-toggle">
+    <ul>
+      <li class="{% if not raw %}is-active{% endif %}">
+        <a href="{% url 'entries' form.pk %}">Entries</a>
+      </li>
+      <li class="{% if raw %}is-active{% endif %}">
+        <a href="{% url 'records' form.pk %}">Records</a>
+      </li>
+    </ul>
+  </div>
+  {% if raw %}
+  {% include 'core/records.html' %}
+  {% else %}
+  {% include 'core/entries.html' %}
+  {% endif %}
+</div>
+{% endblock %}

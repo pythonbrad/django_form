@@ -81,7 +81,7 @@ class RecordFormTest(EntryModelTest):
         }
         for entry in Entry.objects.filter():
             form = RecordForm(entry, {
-                'value': data[entry.type]
+                entry.name: data[entry.type]
             })
             self.assertTrue(form.is_valid())
             form.instance.author = User.objects.get_or_create(

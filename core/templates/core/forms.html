@@ -1,39 +1,38 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
-  <div class="container">
-    {% for form in forms %}
-    {% if forloop.first or forloop.counter0|divisibleby:3 %}
-    <div class="columns">
-    {% endif %}
-      <div class="column has-text-centered is-one-third">
-        <div class="hero">
-          <div class="hero-head">
-            <figure class="image">
-              <img src="{% static 'images/logo.png' %}">
-            </figure>
+<div class="content">
+  <h1 class="title">My Forms</h1>
+  <div class="columns is-multiline">
+  {% for form in forms %}
+    <div class="column is-one-third has-text-centered">
+      <div class="card">
+        <a href="{% url 'entries' form.pk %}">
+        <div class="card-image">
+          {% include 'core/form_banner.html' %}
+        </div>
+          <div class="card-content">
+            <p class="title is-5">{{ form.name }} ({{ form.entries.first.records.count|default:"0" }} records)</p>
+            <p class="subtitle">
+              {{ form.description }}
+            </p>
           </div>
+        </a>
+        <div class="card-footer">
+          <a class="card-footer-item button is-info" href="{% url 'edit_form' form.pk %}">Edit</a>
+          <a class="card-footer-item button is-danger" href="{% url 'delete_form' form.pk %}">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+    <div class="column is-one-third has-text-centered">
+      <a href="{% url 'new_form' %}">
+        <div class="hero box">
           <div class="hero-body">
-            <p class="title">{{ form.name }}</p>
-            <p class="subtitle">{{ form.description }}</p>
-          </div>
-          <div class="hero-foot">
-            <p class="subtitle">{{ form.get_response|length }} responses</p>
+            <h1 class="title is-1">+</h1>
           </div>
         </div>
-      </div>
-    {% if forloop.counter|divisibleby:3 %}
+      </a>
     </div>
-    {% endif %}
-    {% empty %}
-    <div class="hero">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <a class="button is-primary">Create your first form</a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-    
   </div>
+</div>
 {% endblock %}

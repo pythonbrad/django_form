@@ -1,9 +1,11 @@
+![Preview](screenshot.png)
+
 # DjangoForm
-> Easily create and share online forms and surveys.
+
+## Description
+Easily create and share online forms and surveys.
 
 ## 🚀 Features
-
-![Logo](logo.png)
 
 ## Table of Contents
 * **[Installation](#installation)**

@@ -1,0 +1,5 @@
+.image.df-is-stretch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; /* if an only child */
+}

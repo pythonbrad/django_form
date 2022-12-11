@@ -179,3 +179,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 # https://github.com/bashu/django-maintenancemode
 MAINTENANCE_MODE = env.bool('maintenance_mode')
 MAINTENANCE_MODE_IGNORE_URLS = env.list("maintenance_mode_ignore_urls")
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"

@@ -4,17 +4,17 @@
   <div class="hero-body">
     <div class="content has-text-centered">
       <p class="title is-1">With DjangoForm</p>
-      <p class="subtitle">Easily create surveys, quizzes, and polls.</p>
+      <p class="subtitle">Easily create a survey online that can be taken on any device, anytime.</p>
     </div>
     <div class="content has-text-centered">
       <div class="is-grouped">
-        <a class="button is-info" href="{% url 'getting-started' %}">Getting Started</a>
-        <a class="button is-primary" href="{% url 'forms' %}">Go to Forms</a>
+        <a class="button is-info" href="{% url 'account_login' %}">
+          <strong>Login</strong>
+        </a>
+        <a class="button is-primary" href="{% url 'account_signup' %}">
+          <strong>Signup</strong>
+        </a>
       </div>
-    </div>
-    <div class="content has-text-centered">
-      <span class="label is-muted">Don't have an account?</span>
-      <a class="button" href="{% url 'account_signup' %}">Sign up for free</a>
     </div>
   </div>
 </div>

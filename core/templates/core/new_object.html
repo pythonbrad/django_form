@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content">
+  <h1 class="title">
+    {% if edit %}Edit{% else %}New{% endif %} {{ object_name }}
+  </h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="button is-primary">
+      {% if edit %}Update{% else %}Create{% endif %} {{ object_name }}
+    </button>
+    <a class="button is-light" href="{{ back_url }}">Discard</a>
+  </form>
+</div>
+{% endblock %}

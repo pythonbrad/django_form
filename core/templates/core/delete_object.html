@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+  <h1 class="title">
+    Delete "{{ object }}"
+  </h1>
+  <p class="subtitle">Are you sure to delete "{{ object }}" with all elements dependent on it?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="delete" value="1" hidden>
+    <button type="submit" class="button is-danger">Delete</button>
+    <a class="button is-light" href="{{ back_url }}">Discard</a>
+  </form>
+</div>
+{% endblock %}

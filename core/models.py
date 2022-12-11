@@ -19,10 +19,16 @@ def generate_code():
 class Form(models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    banner = models.ImageField(blank=True)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='forms'
+    )
     created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(default=timezone.now)
     code = models.CharField(max_length=8, default=generate_code)
+
+    def __str__(self):
+        return 'Form %s' % self.name
 
 
 class Entry(models.Model):
@@ -40,19 +46,28 @@ class Entry(models.Model):
         ('ipv6', 'IPV6 Adress'),
         ('ipv46', 'IPV4 or IPV6 Adress'),
     )
-    form = models.ForeignKey('Form', on_delete=models.CASCADE)
+    form = models.ForeignKey(
+        'Form', on_delete=models.CASCADE, related_name='entries'
+    )
     name = models.CharField(max_length=8)
     label = models.CharField(max_length=64)
     help_text = models.CharField(max_length=255)
     max_length = models.PositiveSmallIntegerField(
-        validators=[MaxValueValidator(255)])
+        validators=[MaxValueValidator(255)],
+        default=255
+    )
     type = models.CharField(
         max_length=10, choices=ENTRY_CHOICES, default='text'
     )
 
+    def __str__(self):
+        return "Entry %s" % self.name
+
 
 class Record(models.Model):
-    entry = models.ForeignKey('Entry', on_delete=models.CASCADE)
+    entry = models.ForeignKey(
+        'Entry', on_delete=models.CASCADE, related_name='records'
+    )
     value = models.CharField(max_length=255)
     date_submitted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(
