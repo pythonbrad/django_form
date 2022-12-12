@@ -3,7 +3,7 @@
 # DjangoForm
 
 ## Description
-Easily create and share online forms and surveys.
+An online survey creator that exploit the power of Django’s forms API. 
 
 ## 🚀 Features
 
