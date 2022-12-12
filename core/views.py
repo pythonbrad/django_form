@@ -177,8 +177,9 @@ def new_record(request, code):
             RecordForm(entry, request.POST)
             for entry in mform.entries.filter()
         ]
-        if any([
-            form.is_valid()
+        # We verify if all the forms ate valid
+        if not any([
+            not form.is_valid()
             for form in forms
         ]):
             for form in forms:
