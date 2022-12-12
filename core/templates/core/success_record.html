@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content box">
+  <h1 class="title">
+    {{ form.name }}
+  </h1>
+  <p class="subtitle">Your response has been recorded.</p>
+  <a href="">Submit another response</a>
+</div>
+{% endblock %}

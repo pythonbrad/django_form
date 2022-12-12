@@ -51,7 +51,7 @@ class Entry(models.Model):
     )
     name = models.CharField(max_length=8)
     label = models.CharField(max_length=64)
-    help_text = models.CharField(max_length=255)
+    help_text = models.CharField(max_length=255, default="", blank=True)
     max_length = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(255)],
         default=255
@@ -71,5 +71,6 @@ class Record(models.Model):
     value = models.CharField(max_length=255)
     date_submitted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='+'
+        User, on_delete=models.CASCADE, related_name='+',
+        blank=True, null=True
     )
