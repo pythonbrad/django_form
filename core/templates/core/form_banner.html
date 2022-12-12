@@ -1,0 +1,8 @@
+{% load static %}
+<figure class="image is-128x128 is-flex" style="width: auto;">
+  {% if form.banner %}
+  <img src="{{ form.banner.url }}">
+  {% else %}
+  <img src="{% static 'images/logo.png' %}">
+  {% endif %}
+</figure>

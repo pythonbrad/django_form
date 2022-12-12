@@ -1,4 +1,4 @@
-{% extends "_base.html" %}
+{% extends "baseform.html" %}
 
 {% load i18n %}
 
@@ -6,7 +6,7 @@
 
 {% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
 
-{% block content %}
+{% block form %}
     <h1 class="title">{% trans "E-mail Addresses" %}</h1>
 {% if user.emailaddress_set.all %}
 <p class="subtitle">{% trans 'The following e-mail addresses are associated with your account:' %}</p>

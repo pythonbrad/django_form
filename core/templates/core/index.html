@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero">
+  <div class="hero-body">
+    <div class="content has-text-centered">
+      <p class="title is-1">With DjangoForm</p>
+      <p class="subtitle">Easily create a survey online that can be taken on any device, anytime.</p>
+    </div>
+    <div class="content has-text-centered">
+      <div class="is-grouped">
+        <a class="button is-info" href="{% url 'account_login' %}">
+          <strong>Login</strong>
+        </a>
+        <a class="button is-primary" href="{% url 'account_signup' %}">
+          <strong>Signup</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

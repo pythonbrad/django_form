@@ -1,4 +1,4 @@
-{% extends "_base.html" %}
+{% extends "baseform.html" %}
 
 {% load i18n %}
 {% load account %}
@@ -6,7 +6,7 @@
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
 
-{% block content %}
+{% block form %}
 <h1 class="title">{% trans "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}

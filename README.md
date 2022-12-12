@@ -1,9 +1,11 @@
+![Preview](screenshot.png)
+
 # DjangoForm
-> An opensource alternative to Google Form.
+
+## Description
+Easily create and share online forms and surveys.
 
 ## 🚀 Features
-
-![Logo](logo.png)
 
 ## Table of Contents
 * **[Installation](#installation)**

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content">
+  {% include 'core/form_banner.html' with form=mform %}
+  <h1 class="title">
+    {{ mform.name }}
+  </h1>
+  <p class="subtitle">
+    {{ mform.description }}
+  </p>
+</div>
+<div class="content">
+  <form method="POST">
+    {% csrf_token %}
+    {% for form in forms %}
+    {{ form|crispy }}
+    {% endfor %}
+    <button class="button is-primary" type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}

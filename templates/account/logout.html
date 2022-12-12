@@ -1,9 +1,9 @@
-{% extends '_base.html' %}
+{% extends 'baseform.html' %}
 {% load crispy_forms_tags %}
 
 {% block title %}Log out{% endblock %}
 
-{% block content %}
+{% block form %}
 <h1 class="title">Sign Out</h1>
 
 <p class="subtitle">Are you sure you want to sign out?</p>
@@ -16,4 +16,4 @@
   </div>
 </form>
 
-{% endblock content %}
+{% endblock %}
