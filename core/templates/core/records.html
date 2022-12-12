@@ -20,7 +20,7 @@
           <tbody>
             {% for record in entry.records.filter %}
             <tr>
-              <td>{{ record.author }}</td>
+              <td>{{ record.author|default:"- - -" }}</td>
               <td>{{ record.value }}</td>
               <td>{{ record.date_submitted|date }}</td>
             </tr>

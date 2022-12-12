@@ -166,9 +166,12 @@ def records(request, pk):
     })
 
 
-@login_required
 def new_record(request, code):
     mform = get_object_or_404(MForm, code=code)
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
     if request.POST:
         forms = [
             RecordForm(entry, request.POST)
@@ -179,10 +182,12 @@ def new_record(request, code):
             for form in forms
         ]):
             for form in forms:
-                form.instance.author = request.user
+                form.instance.author = user
                 form.save()
-            messages.success(request, "Submitted with success")
-            return redirect('home')
+            return render(request, 'core/success_record.html', {
+                'title': mform.name,
+                'form': mform,
+            })
         else:
             pass
     else:
