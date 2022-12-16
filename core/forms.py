@@ -11,7 +11,7 @@ class Form(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['name', 'label', 'help_text', 'type']
+        fields = ['name', 'label', 'help_text', 'type', 'metadata']
 
 
 class RecordForm(forms.ModelForm):
