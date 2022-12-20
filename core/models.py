@@ -59,6 +59,9 @@ class Entry(models.Model):
     type = models.CharField(
         max_length=10, choices=ENTRY_CHOICES, default='text'
     )
+    metadata = models.TextField(
+        max_length=65535, default='', blank=True
+    )
 
     def __str__(self):
         return "Entry %s" % self.name
