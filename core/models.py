@@ -45,6 +45,8 @@ class Entry(models.Model):
         ('ipv4', 'IPV4 Adress'),
         ('ipv6', 'IPV6 Adress'),
         ('ipv46', 'IPV4 or IPV6 Adress'),
+        ('choice', 'Choice'),
+        ('choices', 'Choices'),
     )
     form = models.ForeignKey(
         'Form', on_delete=models.CASCADE, related_name='entries'

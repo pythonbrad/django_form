@@ -55,6 +55,14 @@ class RecordForm(forms.ModelForm):
             field = forms.fields.GenericIPAddressField(protocol='ipv6')
         elif entry.type == 'ipv46':
             field = forms.fields.GenericIPAddressField(protocol='both')
+        elif entry.type == 'choice':
+            field = forms.fields.ChoiceField(
+                choices=enumerate(entry.metadata.split(','))
+            )
+        elif entry.type == 'choices':
+            field = forms.fields.MultipleChoiceField(
+                choices=enumerate(entry.metadata.split(','))
+            )
         else:
             raise Exception('Entry type "%s" not supported' % entry.type)
         self.fields[entry.name] = field

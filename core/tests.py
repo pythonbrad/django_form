@@ -22,6 +22,10 @@ class FormModelTest(TestCase):
 class EntryModelTest(FormModelTest):
     def test_create_entry(self):
         form = self.test_create_form()
+        data = {
+            'choice': 'A,B,C,D',
+            'choices': 'A,B,C,D',
+        }
         for _ in Entry.ENTRY_CHOICES:
             Entry.objects.get_or_create(
                 form=form,
@@ -29,8 +33,9 @@ class EntryModelTest(FormModelTest):
                 defaults={
                     'label': _[1],
                     'help_text': '',
-                    'max_length': 64,
-                    'type': _[0]
+                    'max_length': 255,
+                    'type': _[0],
+                    'metadata': data.get(_[0], ''),
                 }
             )
 
@@ -51,6 +56,8 @@ class RecordModelTest(EntryModelTest):
             'ipv4': '127.0.0.1',
             'ipv6': '::1',
             'ipv46': '::1',
+            'choice': '0',
+            'choices': '0,1',
         }
         for entry in Entry.objects.filter():
             Record.objects.create(
@@ -63,7 +70,7 @@ class RecordModelTest(EntryModelTest):
 
 
 class RecordFormTest(EntryModelTest):
-    def test_create_record(self):
+    def test_create_fill_form(self):
         self.test_create_entry()
         data = {
             'number': '123',
@@ -78,6 +85,8 @@ class RecordFormTest(EntryModelTest):
             'ipv4': '127.0.0.1',
             'ipv6': '::1',
             'ipv46': '::1',
+            'choice': '0',
+            'choices': [0, 1],
         }
         for entry in Entry.objects.filter():
             form = RecordForm(entry, {
