@@ -1,4 +1,5 @@
 from django import forms
+from crispy_bulma.widgets import FileUploadInput
 from .models import Form as MForm, Entry, Record
 
 
@@ -6,6 +7,10 @@ class Form(forms.ModelForm):
     class Meta:
         model = MForm
         fields = ['name', 'description', 'banner']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['banner'].widget = FileUploadInput()
 
 
 class EntryForm(forms.ModelForm):
@@ -29,9 +34,13 @@ class RecordForm(forms.ModelForm):
         elif entry.type == 'text':
             field = forms.fields.CharField(max_length=255)
         elif entry.type == 'date':
-            field = forms.fields.DateField()
+            field = forms.fields.DateField(
+                widget=forms.TextInput(attrs={'type': 'date'})
+            )
         elif entry.type == 'time':
-            field = forms.fields.TimeField()
+            field = forms.fields.TimeField(
+                widget=forms.TextInput(attrs={'type': 'time'})
+            )
         elif entry.type == 'decimal':
             field = forms.fields.DecimalField()
         elif entry.type == 'email':

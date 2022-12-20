@@ -18,4 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Get all "file-input" elements
+  const fileInputs = Array.prototype.slice.call(document.querySelectorAll('.file-input'), 0);
+
+  // Add a onchange event on each of them
+  fileInputs.forEach(el => {
+    el.addEventListener('change', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Update the filename
+      $target.textContent = el.value;
+
+    });
+  });
+
 });
