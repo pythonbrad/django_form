@@ -46,7 +46,9 @@ class RecordForm(forms.ModelForm):
         elif entry.type == 'email':
             field = forms.fields.EmailField()
         elif entry.type == 'url':
-            field = forms.fields.URLField()
+            field = forms.fields.URLField(
+                widget=forms.TextInput(attrs={'type': 'url'})
+            )
         elif entry.type == 'bool':
             field = forms.fields.BooleanField(required=False)
         elif entry.type == 'ipv4':
