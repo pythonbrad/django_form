@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import Form, EntryForm, RecordForm
 from .models import Form as MForm, Entry
+from django.http import HttpResponse
+import csv
 
 
 # Create your views here.
@@ -164,6 +166,33 @@ def records(request, pk):
         'form': mform,
         'raw': True
     })
+
+
+@login_required
+def export(request, pk):
+    mform = get_object_or_404(MForm, pk=pk, author=request.user)
+    data = {
+        entry.name: list(entry.records.values_list('value', flat=True))
+        for entry in mform.entries.filter()
+    }
+
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={
+            'Content-Disposition': 'attachment; filename="%s.csv"' % mform.name
+        },
+    )
+
+    writer = csv.writer(response)
+    writer.writerow(data.keys())
+    [
+        writer.writerow([
+            i.pop() if i else ''
+            for i in data.values()
+        ]) for _ in range(mform.entries.first().records.count())
+    ]
+
+    return response
 
 
 def new_record(request, code):
