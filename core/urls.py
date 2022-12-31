@@ -13,5 +13,6 @@ urlpatterns = [
     path('form/entry/<int:pk>/edit', views.edit_entry, name='edit_entry'),
     path('form/entry/<int:pk>/delete', views.delete_entry, name='delete_entry'),
     path('form/<int:pk>/records', views.records, name='records'),
+    path('form/<int:pk>/export', views.export, name='export'),
     path('form/<code>', views.new_record, name='new_record'),
 ]
