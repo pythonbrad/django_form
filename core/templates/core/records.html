@@ -22,7 +22,7 @@
             {% for record in entry.records.filter %}
             <tr>
               <td>{{ record.author|default:"- - -" }}</td>
-              <td>{{ record.value }}</td>
+              <td>{{ record.value|default:"<i>Empty</i>" }}</td>
               <td>{{ record.date_submitted|date }}</td>
             </tr>
             {% empty %}

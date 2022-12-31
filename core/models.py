@@ -64,6 +64,7 @@ class Entry(models.Model):
     metadata = models.TextField(
         max_length=65535, default='', blank=True
     )
+    optional = models.BooleanField(default=False)
 
     def __str__(self):
         return "Entry %s" % self.name
@@ -73,7 +74,7 @@ class Record(models.Model):
     entry = models.ForeignKey(
         'Entry', on_delete=models.CASCADE, related_name='records'
     )
-    value = models.CharField(max_length=255)
+    value = models.CharField(max_length=255, blank=True, null=True)
     date_submitted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='+',

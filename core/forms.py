@@ -16,7 +16,7 @@ class Form(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['name', 'label', 'help_text', 'type', 'metadata']
+        fields = ['name', 'label', 'help_text', 'type', 'metadata', 'optional']
 
 
 class RecordForm(forms.ModelForm):
@@ -70,6 +70,7 @@ class RecordForm(forms.ModelForm):
         self.fields[entry.name] = field
         self.fields[entry.name].help_text = entry.help_text
         self.fields[entry.name].label = entry.label
+        self.fields[entry.name].required = not entry.optional
 
     def save(self, *args, **kwargs):
         self.instance.value = self.cleaned_data[self.instance.entry.name]

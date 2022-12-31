@@ -38,6 +38,15 @@ class EntryModelTest(FormModelTest):
                     'metadata': data.get(_[0], ''),
                 }
             )
+        Entry.objects.get_or_create(
+            form=form,
+            name='optional',
+            defaults={
+                'label': 'optional',
+                'type': _[0],
+                'optional': True
+            }
+        )
 
 
 class RecordModelTest(EntryModelTest):
@@ -91,6 +100,7 @@ class RecordFormTest(EntryModelTest):
         for entry in Entry.objects.filter():
             form = RecordForm(entry, {
                 entry.name: data[entry.type]
+                if entry.name != 'optional' else None
             })
             self.assertTrue(form.is_valid())
             form.instance.author = User.objects.get_or_create(
