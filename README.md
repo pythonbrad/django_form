@@ -5,7 +5,7 @@
 ## Description
 An online survey creator that exploit the power of Django’s forms API. 
 
-## 🚀 Features
+## Features
 
 ## Table of Contents
 * **[Installation](#installation)**
@@ -17,9 +17,9 @@ An online survey creator that exploit the power of Django’s forms API.
 * [Support](#support)
 * [License](#license)
 
-## 📖 Installation
+## Installation
 DjangoForm can be installed via Pip, Pipenv, or Docker. To start, clone the repo to your local computer and change into the proper directory.
-*NB:* We recommand Python3.10. But if you want to use another version, we provide the [raw version](requirements_raw.txt) of the requirements.txt file.
+*NB:* We provide the [raw version](requirements_raw.txt) of the requirements.txt file.
 
 ```
 $ git clone https://github.com/pythonbrad/django_form.git
