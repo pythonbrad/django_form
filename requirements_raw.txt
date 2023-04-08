@@ -8,3 +8,4 @@ django-maintenance-mode
 mysqlclient
 Pillow
 whitenoise
+gunicorn
